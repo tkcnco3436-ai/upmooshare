@@ -228,6 +228,46 @@ a{color:inherit;text-decoration:none;}
 | 회원탈퇴 (`withdraw.html`) | 화면 UI 개선 |
 | 어드민 대시보드 (`admin-dashboard.html`) | 사이드바 좌측 하단 관리자 프로필(아바타) 영역 삭제, 역할·이름 + 로그아웃만 유지 |
 
+### 개발 전달 번들 (`개발전달-마이페이지/`)
+
+개발자에게 넘기는 정적 HTML 산출물. 프레임워크 없이 HTML+CSS+JS, 화면 단위로 CSS/JS 분리(레이어: tokens → common → {group}-common → {page}).
+
+```
+개발전달-마이페이지/
+├─ mypage.html            로그인 상태 마이페이지
+├─ mypage-login.html      로그인 후 헤더 반영 마이페이지
+├─ edit.html              내 정보 수정
+├─ withdraw.html          회원탈퇴
+├─ admin-dashboard.html   관리자 대시보드 사이드바
+├─ css/
+│  ├─ tokens.css          디자인 토큰(색·간격·라운드·그림자·모션) — 정본
+│  ├─ common.css          공통: 리셋·헤더·드로어·공통 버튼·모달 a11y·mesh
+│  ├─ mypage-common.css   마이페이지군 공용: 아바타·크롭·폼·로그아웃 모달
+│  ├─ mypage.css          마이페이지 전용
+│  ├─ edit.css            내 정보 수정 전용
+│  ├─ withdraw.css        회원탈퇴 전용
+│  └─ admin-dashboard.css 관리자 사이드바 전용
+├─ js/
+│  ├─ common.js           헤더 프로필·드로어·모달 포커스 트랩·mesh 셰이더
+│  ├─ mypage-common.js    아바타 메뉴·크롭·로그아웃 모달
+│  ├─ mypage.js           마이페이지 전용(결제 위자드·인포 모달)
+│  ├─ edit.js             내 정보 수정(이메일·비번 변경·비번 규칙)
+│  ├─ withdraw.js         회원탈퇴 게이트(확인 문구 입력)
+│  └─ admin-dashboard.js  관리자 사이드바 활성 토글
+└─ image/
+   ├─ logo.svg            상인월드 로고
+   └─ (카드사 8종) shinhan·kb·hyundaicard·lottecard·wooribank·nh·bc·hana.svg
+```
+
+| 레이어 | 파일 | 역할 |
+|---|---|---|
+| ① 토큰 | `tokens.css` | 색·간격·라운드·그림자·모션 변수(정본) |
+| ② 공통 | `common.css` / `common.js` | 모든 페이지 공용(헤더·드로어·모달 a11y·mesh) |
+| ③ 페이지군 공용 | `mypage-common.css` / `mypage-common.js` | 마이페이지 계열 공용(아바타·크롭·폼·로그아웃) |
+| ④ 페이지 전용 | `{page}.css` / `{page}.js` | 해당 화면에서만 쓰는 규칙 |
+
+> 링크 순서 고정: `tokens → common → (group-common) → page`. 각 HTML은 실제 참조하는 CSS/JS + image 자산만 포함.
+
 ---
 
 ## 4. 예정 업무 (V1)
