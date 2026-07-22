@@ -189,6 +189,32 @@ a{color:inherit;text-decoration:none;}
   .doc{padding:24px 18px 80px;}
   .topbar{padding:0 16px;}
 }
+
+/* ===== UI 캡쳐 탭 갤러리 (0722 리포트 5번) ===== */
+.ui-gallery{margin:18px 0 8px;}
+.ui-tabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--border);margin-bottom:20px;}
+.ui-tab{appearance:none;border:none;background:transparent;font-family:inherit;font-size:13.5px;font-weight:600;
+  color:var(--fg-hint);padding:9px 14px;border-radius:var(--radius-sm) var(--radius-sm) 0 0;cursor:pointer;
+  margin-bottom:-1px;border-bottom:2px solid transparent;transition:color .12s,border-color .12s;}
+.ui-tab:hover{color:var(--fg-strong);}
+.ui-tab.is-active{color:var(--fg-strong);border-bottom-color:var(--primary);}
+.ui-panel{display:none;}
+.ui-panel.is-active{display:block;}
+.ui-state{margin:0 0 30px;}
+.ui-state__title{font-size:14px;font-weight:700;color:var(--fg-strong);margin:0 0 12px;display:flex;align-items:center;gap:8px;}
+.ui-state__title .n{display:inline-flex;align-items:center;justify-content:center;height:20px;padding:0 7px;border-radius:6px;
+  background:var(--muted);color:var(--fg-hint);font-size:11px;font-variant-numeric:tabular-nums;}
+.ui-shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;align-items:start;}
+.ui-shot{border:1px solid var(--border);border-radius:var(--radius-card);overflow:hidden;background:var(--bg-surface);box-shadow:var(--shadow-md);}
+.ui-shot img{display:block;width:100%;height:auto;cursor:zoom-in;background:var(--muted);}
+.ui-shot__cap{font-size:11px;font-weight:600;color:var(--fg-hint);padding:7px 9px;border-top:1px solid var(--border);
+  display:flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums;}
+.ui-shot__cap .w{color:var(--primary-fg);}
+/* 라이트박스 */
+.ui-lb{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.82);padding:24px;cursor:zoom-out;}
+.ui-lb.is-open{display:flex;}
+.ui-lb img{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 24px 70px rgba(0,0,0,.5);}
 </style>
 </head>
 <body>
@@ -262,6 +288,14 @@ a{color:inherit;text-decoration:none;}
 - **공지사항 영역**: 추후 개발될 공지사항 기능을 위해 UI를 미리 작업해 둔 영역입니다. 게시판/공지 데이터가 연동되면 목록만 채우면 됩니다.
 - **사장님 후기 영역**: 영역을 채우기 위한 예시 데이터입니다.
 - **갤러리**: 추후 추가되며, 로고 밴드 섹션 아래 · 기능 섹션 위에 배치될 예정입니다.
+
+---
+
+## 5. UI 화면 캡쳐 (페이지별)
+
+마이페이지 관련 4개 화면의 반응형 + 버튼(모달/오버레이) 상태 캡쳐. 아래 **탭에서 페이지를 선택**하세요. 이미지를 클릭하면 크게 볼 수 있습니다.
+
+- 기본 화면 **1920 / 1200 / 390** 3폭, 버튼 상태는 **1200 / 390** 2폭. 총 **48장**.
 
 </script>
 <script type="text/markdown" data-report-id="0720" data-category="업무 공유" data-date="2026-07-20" data-title="0720 업무 공유" data-file="0720업무공유.md">
@@ -673,6 +707,110 @@ a{color:inherit;text-decoration:none;}
     });
   }
 
+  // ---------- UI 캡쳐 탭 갤러리 (0722 리포트 5번) ----------
+  var UI_SPEC = {
+    order: ['mypage','mypage-login','edit','withdraw'],
+    pages: {
+      'mypage':       { label:'마이페이지',        states:['01-default','02-card-add','03-delete-card','04-logout','05-avatar-menu','06-crop','07-info-tooltip'] },
+      'mypage-login': { label:'마이페이지(로그인)', states:['01-default','02-card-add','03-delete-card','04-logout','05-avatar-menu','06-crop','07-info-tooltip'] },
+      'edit':         { label:'정보수정',          states:['01-default','02-email-edit','03-password-edit','04-avatar-menu','05-crop'] },
+      'withdraw':     { label:'회원탈퇴',          states:['01-default','02-confirm-active','03-logout'] }
+    }
+  };
+  var UI_STATE_LABEL = {
+    '01-default':'기본 화면','02-card-add':'카드 추가','03-delete-card':'카드 삭제','04-logout':'로그아웃',
+    '05-avatar-menu':'아바타 메뉴','06-crop':'프로필 크롭','07-info-tooltip':'인포 툴팁',
+    '02-email-edit':'이메일 변경','03-password-edit':'비밀번호 변경','05-crop':'프로필 크롭',
+    '02-confirm-active':'탈퇴 확인 활성','03-logout':'로그아웃'
+  };
+  function uiWidths(state){ return state==='01-default' ? ['1920','1200','390'] : ['1200','390']; }
+
+  function buildUiGallery(){
+    // 섹션 5 헤딩 찾기
+    var heads = Array.prototype.slice.call(docEl.querySelectorAll('h2'));
+    var anchor = heads.filter(function(h){ return /UI 화면 캡쳐/.test(h.textContent); })[0];
+    if(!anchor) return;
+
+    var gallery = document.createElement('div');
+    gallery.className = 'ui-gallery';
+
+    var tabs = document.createElement('div'); tabs.className = 'ui-tabs';
+    var panelsWrap = document.createElement('div');
+
+    UI_SPEC.order.forEach(function(page, pi){
+      var conf = UI_SPEC.pages[page];
+      var tab = document.createElement('button');
+      tab.type = 'button';
+      tab.className = 'ui-tab' + (pi===0?' is-active':'');
+      tab.textContent = conf.label;
+      tab.dataset.uiTab = page;
+      tabs.appendChild(tab);
+
+      var panel = document.createElement('div');
+      panel.className = 'ui-panel' + (pi===0?' is-active':'');
+      panel.dataset.uiPanel = page;
+
+      conf.states.forEach(function(state){
+        var st = document.createElement('div'); st.className = 'ui-state';
+        var title = document.createElement('p'); title.className = 'ui-state__title';
+        title.innerHTML = '<span class="n">'+state.split('-')[0]+'</span>' + (UI_STATE_LABEL[state]||state);
+        st.appendChild(title);
+        var shots = document.createElement('div'); shots.className = 'ui-shots';
+        uiWidths(state).forEach(function(w){
+          var fig = document.createElement('figure'); fig.className = 'ui-shot';
+          var img = document.createElement('img');
+          img.loading = 'lazy';
+          img.alt = conf.label+' · '+(UI_STATE_LABEL[state]||state)+' · '+w+'px';
+          img.src = encodeURI('image/UI 화면/'+page+'/'+page+'__'+w+'__'+state+'.png');
+          var cap = document.createElement('figcaption'); cap.className = 'ui-shot__cap';
+          cap.innerHTML = '<span class="w">'+w+'px</span>';
+          fig.appendChild(img); fig.appendChild(cap);
+          shots.appendChild(fig);
+        });
+        st.appendChild(shots);
+        panel.appendChild(st);
+      });
+      panelsWrap.appendChild(panel);
+    });
+
+    gallery.appendChild(tabs);
+    gallery.appendChild(panelsWrap);
+
+    // 헤딩 다음 설명 문단들 뒤에 삽입
+    var after = anchor;
+    while(after.nextElementSibling && !/^H[12]$/.test(after.nextElementSibling.tagName)){
+      after = after.nextElementSibling;
+    }
+    after.parentNode.insertBefore(gallery, after.nextSibling);
+
+    // 탭 전환
+    tabs.addEventListener('click', function(e){
+      var btn = e.target.closest('[data-ui-tab]'); if(!btn) return;
+      var key = btn.dataset.uiTab;
+      tabs.querySelectorAll('.ui-tab').forEach(function(t){ t.classList.toggle('is-active', t===btn); });
+      panelsWrap.querySelectorAll('.ui-panel').forEach(function(p){ p.classList.toggle('is-active', p.dataset.uiPanel===key); });
+    });
+
+    // 클릭 확대(라이트박스)
+    gallery.addEventListener('click', function(e){
+      var img = e.target.closest('.ui-shot img'); if(!img) return;
+      openUiLightbox(img.src, img.alt);
+    });
+  }
+
+  function openUiLightbox(src, alt){
+    var lb = document.querySelector('[data-ui-lb]');
+    if(!lb){
+      lb = document.createElement('div'); lb.className = 'ui-lb'; lb.setAttribute('data-ui-lb','');
+      lb.innerHTML = '<img alt="">';
+      document.body.appendChild(lb);
+      lb.addEventListener('click', function(){ lb.classList.remove('is-open'); });
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape') lb.classList.remove('is-open'); });
+    }
+    var im = lb.querySelector('img'); im.src = src; im.alt = alt||'';
+    lb.classList.add('is-open');
+  }
+
   // ---------- 선택 ----------
   function select(id){
     var r = reports.filter(function(x){return x.id===id;})[0];
@@ -680,6 +818,7 @@ a{color:inherit;text-decoration:none;}
     current = r;
     var res = renderMd(r.md);
     docEl.innerHTML = res.html;
+    if(id==='0722') buildUiGallery();
     buildToc(res.toc);
     crumbEl.textContent = r.title;
     document.title = r.title + ' | 상인월드';
