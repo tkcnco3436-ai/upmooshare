@@ -1,0 +1,147 @@
+/* ==========================================================================
+   tokens.css — 상인월드 디자인 토큰 (frontend/app/globals.css 이식)
+   Tailwind v4 @theme / :root 변수를 순수 CSS 커스텀 프로퍼티로 옮긴 정본.
+   로드 순서: tokens.css → common.css → {group}.css → {page}.css
+   ========================================================================== */
+
+:root {
+  /* ─── Radius (Figma: Line/Radius) ─── */
+  --radius: 0.75rem; /* 12px */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-3xl: 36px;
+  --radius-4xl: 48px;
+  --btn-radius: 12px;
+  --input-radius: 6px;
+  --checkbox-radius: 4px;
+
+  /* ─── Border weight (Figma: Line/Weight) ─── */
+  --border-weight-thin: 0.75px;
+  --border-weight-default: 1px;
+  --border-weight-thick: 2px;
+
+  /* ─── Icon sizes (Figma: Icon/Size) ─── */
+  --icon-size-sm: 16px;
+  --icon-size-md: 20px;
+  --icon-size-base: 24px;
+  --icon-size-lg: 32px;
+  --icon-size-xl: 36px;
+
+  /* ─── Color palette: Red (Figma: All/RED) ─── */
+  --red-50: #fff4ed;
+  --red-100: #ffe5d4;
+  --red-200: #ffc7a8;
+  --red-300: #ffa071;
+  --red-400: #ff6e38;
+  --red-500: #fe460f;
+  --red-600: #ef2d07;
+  --red-700: #c61d08;
+  --red-800: #9d190f;
+  --red-900: #7e1810;
+
+  /* ─── Color palette: Green (Figma: All/Green) ─── */
+  --green-50: #f0fdf4;
+  --green-100: #dbfde7;
+  --green-200: #b9f9d0;
+  --green-300: #83f2ac;
+  --green-400: #46e280;
+  --green-500: #1dca5e;
+  --green-600: #12a64a;
+  --green-700: #12833d;
+  --green-800: #146734;
+  --green-900: #12552d;
+
+  /* ─── Color palette: Gray (Figma: All/Gray) ─── */
+  --gray-50: #f5f5f5;
+  --gray-100: #e6e6e6;
+  --gray-200: #d6d6d6;
+  --gray-300: #a5a5a5;
+  --gray-400: #767676;
+  --gray-500: #575757;
+  --gray-600: #434343;
+  --gray-700: #292929;
+  --gray-800: #1a1a1a;
+  --gray-900: #000000;
+
+  /* ─── System colors (Figma: System) ─── */
+  --system-info: #a5a5a5;
+  --system-success: #46e280;
+  --system-error: #ef2d07;
+  --system-skyblue: #138bfa;
+
+  /* ─── 브랜드 레드 (2026-07 전달 디자인) ─── */
+  --brand: #e81411;
+  --brand-active: #490b00;
+
+  /* ─── Semantic tokens (shadcn/ui) ─── */
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --primary: #fe460f;
+  --primary-foreground: #ffffff;
+  --primary-dark: #ef2d07;
+  --primary-light: #ff6e38;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #000000;
+  --muted: #e6e6e6;
+  --muted-foreground: #767676;
+  --accent: #e6e6e6;
+  --accent-foreground: #000000;
+  --destructive: #ef2d07;
+  --border: #d6d6d6;
+  --input: #d6d6d6;
+  --ring: #fe460f;
+
+  /* ─── Chart ─── */
+  --chart-1: #fe460f;
+  --chart-2: #12833d;
+  --chart-3: #767676;
+  --chart-4: #ff6e38;
+  --chart-5: #1dca5e;
+
+  /* ─── Sidebar (admin) ─── */
+  --sidebar: #f5f5f5;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #fe460f;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e6e6e6;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #d6d6d6;
+  --sidebar-ring: #fe460f;
+
+  /* ─── 프론트에서 자주 쓰는 회색 계열 리터럴 (Tailwind 임의값 이식) ─── */
+  --line-soft: #ebecf3; /* 헤더·사이드바·카드 경계 */
+  --line: #d8d8d8; /* 일반 경계 */
+  --text-strong: #3f3e3e; /* 제목 */
+  --text-body: #595959; /* 본문 */
+  --text-sub: #737373; /* 보조 */
+  --surface-alt: #f9faff; /* 어드민 배경·hover */
+  --surface-active: #f2f2f2; /* 활성 nav */
+
+  /* ─── 레이아웃 상수 ─── */
+  --header-h: 66px; /* 사용자 고정 헤더 */
+  --admin-header-h: 64px; /* 관리자 고정 헤더 */
+  --admin-sidebar-w: 240px; /* 펼침 */
+  --admin-sidebar-w-collapsed: 56px; /* 접힘 */
+  --container: 1440px;
+  --content: 1200px;
+
+  /* ─── 모션 ─── */
+  --dur-fast: 150ms;
+  --dur: 200ms;
+  --dur-slow: 260ms;
+  --dur-slower: 700ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* ─── 그림자 ─── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.12);
+  --shadow-drawer: 0 0 24px rgba(0, 0, 0, 0.16);
+}

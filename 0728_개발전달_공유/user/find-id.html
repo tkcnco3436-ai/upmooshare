@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>아이디 찾기 | 상인월드</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/landing.css">
+<link rel="stylesheet" href="../css/ds-auth.css">
+</head>
+<body class="sw-landing login-page">
+<!-- 아이디 찾기 — DS 스플릿 레이아웃 적용 (근거: features/public/auth/components/find-id-form.tsx) -->
+<main class="auth">
+
+  <!-- 좌측: 폼 패널 -->
+  <section class="auth__panel">
+    <a class="auth__logo" href="index.html"><img src="../image/logo-sanginworld.svg" alt="상인월드"></a>
+
+    <div class="auth__form-wrap">
+      <h1 class="auth__title">아이디 찾기</h1>
+      <p class="auth__sub">가입 시 입력한 이름과 휴대폰 번호로 아이디를 찾아드려요.</p>
+
+      <form class="login__form" data-findid-form novalidate>
+        <div class="login-field">
+          <label class="login-field__label" for="fiName">이름</label>
+          <input class="login-field__input" id="fiName" type="text" autocomplete="name" placeholder="이름을 입력하세요" data-findid-name required>
+        </div>
+
+        <div class="login-field">
+          <label class="login-field__label" for="fiPhone">휴대폰 번호</label>
+          <input class="login-field__input" id="fiPhone" type="tel" inputmode="numeric" autocomplete="off" placeholder="010-1234-5678" data-findid-phone required>
+          <p class="login-field__msg is-invalid" data-findid-msg hidden></p>
+        </div>
+
+        <button class="login__submit" type="submit" data-findid-submit disabled>아이디 찾기</button>
+      </form>
+
+      <!-- 준비 중 안내 — 실서비스도 미구현(FindIdForm 이 root 에러로 안내한다) -->
+      <p class="auth__alert" data-findid-alert hidden>
+        <i data-lucide="alert-circle"></i>
+        아이디 찾기 기능은 현재 준비 중입니다.
+      </p>
+
+      <p class="auth__links">
+        <a class="login__link" href="login.html">로그인</a>
+        <span class="auth__links-sep" aria-hidden="true"></span>
+        <a class="login__link" href="password-reset.html">비밀번호 찾기</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 우측: 메시 그라디언트 + AI 아바타 채팅 (로그인·회원가입과 동일 구조) -->
+  <aside class="auth__aside" aria-hidden="true">
+    <canvas class="auth__mesh mesh-canvas"></canvas>
+    <div class="auth__aside-inner">
+      <div class="auth__copy">
+        <h2 class="auth__copy-title">이미지 한 장으로<br>시작하는 가장 쉬운 AI</h2>
+        <p class="auth__copy-sub">아이디를 찾고 다시 시작해보세요.</p>
+      </div>
+
+      <form class="flexhero__prompt">
+        <span class="flexhero__avatar" aria-hidden="true"></span>
+        <div class="flexhero__prompt-body">
+          <div class="flexhero__loading" data-hero-loading hidden>
+            <span class="flexhero__loading-thumb" aria-hidden="true"></span>
+            <div class="flexhero__loading-info">
+              <span class="flexhero__loading-label">매장사진.jpg 업로드 중…</span>
+              <span class="flexhero__loading-bar"><span data-hero-bar></span></span>
+            </div>
+          </div>
+          <span class="flexhero__prompt-text" data-hero-text><span data-hero-type></span><span class="flexhero__caret" aria-hidden="true"></span></span>
+          <span class="flexhero__attach-badge" data-hero-badge hidden>
+            <i data-lucide="image-up"></i>
+            매장사진.jpg
+          </span>
+        </div>
+      </form>
+    </div>
+  </aside>
+
+</main>
+<script src="../vendor/lucide.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/mesh.js"></script>
+<script src="../js/landing.js"></script>
+<script src="../js/ds-auth-forms.js"></script>
+</body>
+</html>

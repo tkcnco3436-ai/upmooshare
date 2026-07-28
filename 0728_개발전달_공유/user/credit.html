@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>크레딧 및 구독관리 | 상인월드</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/account.css">
+<link rel="stylesheet" href="../css/credit.css">
+</head>
+<body>
+<div class="page">
+<!-- ─── 헤더 (로그인) — LandingHeader / user 있음 ─── -->
+<header class="sw-header">
+  <div class="sw-header-inner">
+    <div class="sw-logo"><a href="index.html"><img src="../image/logo-sanginworld.svg" alt="상인월드"></a></div>
+
+    <nav class="sw-nav">
+      <a href="index.html#features">기능</a>
+      <a href="index.html#pricing">요금안내</a>
+      <a href="index.html#gallery">갤러리</a>
+      <a href="notices.html">공지사항</a>
+    </nav>
+
+    <div class="sw-header-actions">
+      <a class="pill-cta" href="video-create.html"><i data-lucide="video"></i>영상생성</a>
+
+      <a class="pill-credit only-desktop" href="credit.html" aria-label="잔여 크레딧 1,240">
+        <i data-lucide="coins"></i>1,240<span class="unit">크레딧</span>
+      </a>
+
+      <!-- NotificationBell — 탭하면 320px 알림 패널이 열린다 (페이지 이동 아님) -->
+      <div class="bell-wrap" data-dropdown>
+        <button class="bell" type="button" data-dropdown-btn aria-label="읽지 않은 알림 3개" aria-expanded="false">
+          <i data-lucide="bell"></i><span class="bell-dot">3</span>
+        </button>
+
+        <div class="bell-menu" data-dropdown-menu hidden>
+          <div class="bm-head">
+            <span>알림</span>
+            <button type="button"><i data-lucide="check"></i>모두 읽음</button>
+          </div>
+
+          <!-- 행: [분류배지] ─ [시간] / 제목 / 내용 / [열기] ─ [삭제] · 읽음여부는 카드 테두리로 표시 -->
+          <div class="bm-list">
+            <!-- 미읽음 (테두리 레드) + 링크 있음 -->
+            <div class="bm-row unread">
+              <div class="nr-top">
+                <span class="l">
+                  <span class="nr-cat system">시스템알림</span>
+                </span>
+                <span class="nr-time">10분 전</span>
+              </div>
+              <button class="nr-main" type="button">
+                <span class="nr-ttl">영상 생성이 완료되었어요</span>
+                <span class="nr-cnt">요청하신 영상이 완성되었습니다. 지금 바로 확인하고 다운로드해 보세요.</span>
+              </button>
+              <div class="nr-bottom">
+                <button class="nr-open" type="button"><i data-lucide="external-link"></i>열기</button>
+                <button class="nr-del" type="button" aria-label="알림 삭제"><i data-lucide="x"></i></button>
+              </div>
+            </div>
+
+            <div class="bm-row unread">
+              <div class="nr-top">
+                <span class="l">
+                  <span class="nr-cat guide">안내</span>
+                </span>
+                <span class="nr-time">2시간 전</span>
+              </div>
+              <button class="nr-main" type="button">
+                <span class="nr-ttl">크레딧 충전이 완료되었습니다</span>
+                <span class="nr-cnt">300 크레딧이 충전되었습니다. 현재 잔액은 1,540 크레딧입니다.</span>
+              </button>
+              <div class="nr-bottom">
+                <button class="nr-open" type="button"><i data-lucide="external-link"></i>열기</button>
+                <button class="nr-del" type="button" aria-label="알림 삭제"><i data-lucide="x"></i></button>
+              </div>
+            </div>
+
+            <!-- 미읽음 (테두리 레드) + 링크 없음 -->
+            <div class="bm-row unread">
+              <div class="nr-top">
+                <span class="l">
+                  <span class="nr-cat guide">안내</span>
+                </span>
+                <span class="nr-time">1일 전</span>
+              </div>
+              <button class="nr-main" type="button">
+                <span class="nr-ttl">서버 정기 점검 안내</span>
+                <span class="nr-cnt">07월 10일 02:00~04:00 서버 정기 점검이 진행됩니다.</span>
+              </button>
+              <div class="nr-bottom">
+                <span class="spacer" aria-hidden="true"></span>
+                <button class="nr-del" type="button" aria-label="알림 삭제"><i data-lucide="x"></i></button>
+              </div>
+            </div>
+
+            <!-- 읽음 -->
+            <div class="bm-row">
+              <div class="nr-top">
+                <span class="l"><span class="nr-cat guide">안내</span></span>
+                <span class="nr-time">3일 전</span>
+              </div>
+              <button class="nr-main" type="button">
+                <span class="nr-ttl">구독이 갱신되었습니다</span>
+                <span class="nr-cnt">Sangin Plus+ 구독이 갱신되어 300 크레딧이 지급되었습니다.</span>
+              </button>
+              <div class="nr-bottom">
+                <button class="nr-open" type="button"><i data-lucide="external-link"></i>열기</button>
+                <button class="nr-del" type="button" aria-label="알림 삭제"><i data-lucide="x"></i></button>
+              </div>
+            </div>
+
+            <!-- 읽음 · 마케팅 -->
+            <div class="bm-row">
+              <div class="nr-top">
+                <span class="l"><span class="nr-cat marketing">마케팅</span></span>
+                <span class="nr-time">5일 전</span>
+              </div>
+              <button class="nr-main" type="button">
+                <span class="nr-ttl">가입 축하 크레딧이 지급되었습니다</span>
+                <span class="nr-cnt">36 크레딧이 지급되었습니다. 첫 영상을 만들어보세요.</span>
+              </button>
+              <div class="nr-bottom">
+                <button class="nr-open" type="button"><i data-lucide="external-link"></i>열기</button>
+                <button class="nr-del" type="button" aria-label="알림 삭제"><i data-lucide="x"></i></button>
+              </div>
+            </div>
+
+            <!-- 빈 상태 (받은 알림 없음)
+            <div class="bm-empty"><i data-lucide="bell"></i><p>받은 알림이 없어요</p></div> -->
+          </div>
+
+          <div class="bm-foot">
+            <button class="push-on" type="button"><i data-lucide="bell-ring"></i>이 기기 푸시 켜짐</button>
+            <button type="button"><i data-lucide="trash-2"></i>읽은 알림 지우기</button>
+            <a class="all" href="notifications.html">알림 전체보기</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dropdown only-desktop block" data-dropdown>
+        <button type="button" class="avatar sm" data-dropdown-btn aria-label="프로필 메뉴" aria-expanded="false">
+          <i data-lucide="user"></i>
+        </button>
+        <div class="dropdown-menu" data-dropdown-menu hidden>
+          <div class="dropdown-user">
+            <span class="avatar"><i data-lucide="user"></i></span>
+            <div style="min-width:0">
+              <p class="name"><span class="truncate">김상인</span><span class="tag-plan">Sangin Plus+</span></p>
+              <p class="email truncate">merchant@example.com</p>
+            </div>
+          </div>
+          <a class="dropdown-item" href="mypage.html"><i data-lucide="user"></i>마이페이지</a>
+          <a class="dropdown-item" href="credit-charge.html"><i data-lucide="coins"></i>크레딧 충전</a>
+          <button class="dropdown-item" type="button"><i data-lucide="log-out"></i>로그아웃</button>
+        </div>
+      </div>
+
+      <button class="hamburger" type="button" data-drawer-open aria-label="메뉴 열기" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ─── 모바일/태블릿 드로어 (로그인) ─── -->
+<div class="drawer-backdrop" data-drawer-backdrop aria-hidden="true"></div>
+<aside class="drawer" data-drawer role="dialog" aria-modal="true" aria-label="메뉴">
+  <div class="drawer-head">
+    <button type="button" data-drawer-close aria-label="메뉴 닫기"><i data-lucide="x"></i></button>
+  </div>
+  <div class="drawer-body">
+    <a class="drawer-profile" href="mypage.html" aria-label="마이페이지">
+      <span class="avatar lg"><i data-lucide="user"></i></span>
+      <div class="col grow" style="min-width:0">
+        <span class="name"><span class="truncate">김상인</span><span class="tag-plan">Sangin Plus+</span></span>
+        <span class="email truncate">merchant@example.com</span>
+      </div>
+      <i data-lucide="chevron-right" class="shrink-0" style="color:var(--muted-foreground)"></i>
+    </a>
+
+    <a class="drawer-credit" href="credit.html">
+      <span class="k"><i data-lucide="coins"></i>전체 보유 크레딧</span>
+      <span class="v"><b>1,240</b><span>크레딧</span></span>
+    </a>
+
+    <nav class="drawer-nav">
+      <a href="index.html#features">기능</a>
+      <a href="index.html#pricing">요금안내</a>
+      <a href="index.html#gallery">갤러리</a>
+      <a href="notices.html">공지사항</a>
+      <a href="video-my.html">내 영상</a>
+      <a href="credit.html">크레딧</a>
+    </nav>
+
+    <button type="button" class="btn btn-outline btn-lg mt-auto" style="color:var(--muted-foreground)">
+      <i data-lucide="log-out"></i>로그아웃
+    </button>
+  </div>
+</aside>
+<main>
+<!-- CreditView — 넓은 레이아웃 (마이페이지 톤 적용)
+     ※ 실서비스는 450px 단일 컬럼. 마이페이지와 톤을 맞추기 위한 의도적 개선.
+        데이터 항목·문구·계산 규칙은 실서비스와 동일하게 유지한다. -->
+<div class="cr-page">
+
+  <!-- MeshGradientCover phrases={["Credit","크레딧 및 구독관리"]} — 마이페이지와 동일 구조 (h-40 md:h-[280px]) -->
+  <div class="mp-cover">
+    <canvas class="mesh-canvas" aria-hidden="true"></canvas>
+    <p class="phrase" data-phrases="Credit,크레딧 및 구독관리">Credit</p>
+  </div>
+
+  <div class="cr-inner">
+
+    <!-- 페이지 헤더 — 충전 액션은 아래 '잔여 크레딧' 카드 헤더의 '충전하기' 하나만 둔다 -->
+    <div class="cr-head">
+      <h1>크레딧 및 구독관리</h1>
+      <p>잔여 크레딧과 구독 상태를 한곳에서 관리합니다.</p>
+    </div>
+
+    <!-- 2컬럼: 크레딧 / 구독 -->
+    <div class="cr-2col">
+
+      <!-- ══ 잔여 크레딧 — 마이페이지와 **동일 컴포넌트** (.mp-card + .credit-row) ══
+           account.css 의 CreditRow 를 그대로 쓴다. 두 화면의 UI 를 갈라놓지 않는다. -->
+      <section class="mp-card">
+        <div class="mp-card-head"><h2>잔여 크레딧</h2><a href="credit-charge.html">충전하기</a></div>
+        <dl>
+          <div class="credit-row">
+            <span class="ic"><i data-lucide="coins"></i></span><dt>전체</dt>
+            <dd><span class="big"><strong>1,240</strong><span>크레딧</span></span></dd>
+          </div>
+          <div class="credit-row">
+            <span class="ic"><i data-lucide="layers"></i></span><dt>구독</dt>
+            <dd>300 크레딧<button class="info-btn" type="button" aria-label="설명 보기"><i data-lucide="info"></i></button></dd>
+            <p class="row-desc">Sangin Plus+ · 매월 300개 지급</p>
+          </div>
+          <div class="credit-row">
+            <span class="ic"><i data-lucide="plus-circle"></i></span><dt>충전</dt>
+            <dd>940 크레딧<button class="info-btn" type="button" aria-label="설명 보기"><i data-lucide="info"></i></button></dd>
+            <p class="row-desc">추가 구매 크레딧 · 만료 없음</p>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ══ 구독 정보 — 마이페이지와 **동일 컴포넌트** (.sub-card) ══ -->
+      <section class="sub-card">
+        <h2>구독 정보</h2>
+        <div class="sub-box">
+          <div class="row">
+            <div class="col grow gap-1" style="padding-right:18px">
+              <span class="eyebrow">현재 플랜</span>
+              <div class="col" style="gap:2px">
+                <p class="plan-nm">Sangin Plus+</p>
+                <p class="plan-meta">월 29,000원 · 월 300 크레딧</p>
+              </div>
+              <span class="renew"><img src="../image/check-circle-green.svg" alt="">2026년 08월 22일 자동결제 예정</span>
+            </div>
+            <div class="sub-grant"><span class="k">월 지급</span><span class="v">300</span><span class="u">크레딧</span></div>
+          </div>
+        </div>
+        <div class="row gap-2" style="padding:12px 0 4px">
+          <a class="pill-btn" href="credit-subscription.html">변경하기</a>
+          <a class="pill-btn-outline" href="credit-subscription-cancel.html">해지하기</a>
+        </div>
+      </section>
+
+      <!-- 미구독 상태 — 대체 상태(기본 숨김). 확인하려면 hidden 을 제거한다. -->
+      <section class="sub-card" hidden>
+        <h2>구독 정보 <span class="text-xs sub">(미구독 상태)</span></h2>
+        <div class="sub-none">
+          <p>구독 중인 플랜이 없어요</p>
+          <p>구독을 시작하고 매월 300 크레딧과 멤버십 전용 혜택을 받아보세요.</p>
+        </div>
+        <div style="padding:12px 0 4px">
+          <a class="pill-btn" href="credit-subscription.html">구독하기</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ══ 이용내역 ══ -->
+    <section class="mp-card mt-6">
+      <div class="cr-txn-head">
+        <h2>이용내역</h2>
+        <div class="cr-filter" data-tabs>
+          <button type="button" data-tab aria-selected="true">전체</button>
+          <button type="button" data-tab aria-selected="false">적립</button>
+          <button type="button" data-tab aria-selected="false">사용</button>
+        </div>
+      </div>
+
+      <div class="txn-row">
+        <div>
+          <p class="t">크레딧 충전</p>
+          <p class="dt">2026년 07월 22일 14시 08분</p>
+        </div>
+        <span class="amt plus">+500</span>
+        <span class="bal">잔액 1,240</span>
+      </div>
+      <div class="txn-row">
+        <div>
+          <p class="t">영상 생성</p>
+          <p class="dt">2026년 07월 21일 09시 41분</p>
+        </div>
+        <span class="amt minus">−12</span>
+        <span class="bal">잔액 740</span>
+      </div>
+      <div class="txn-row">
+        <div>
+          <p class="t">구독 지급</p>
+          <p class="dt">2026년 07월 22일 00시 05분</p>
+        </div>
+        <span class="amt plus">+300</span>
+        <span class="bal">잔액 752</span>
+      </div>
+      <div class="txn-row">
+        <div>
+          <p class="t">주제 추천</p>
+          <p class="dt">2026년 07월 20일 18시 22분</p>
+        </div>
+        <span class="amt minus">−2</span>
+        <span class="bal">잔액 452</span>
+      </div>
+      <div class="txn-row">
+        <div>
+          <p class="t">가입 지급</p>
+          <p class="dt">2026년 06월 30일 11시 03분</p>
+        </div>
+        <span class="amt plus">+36</span>
+        <span class="bal">잔액 36</span>
+      </div>
+
+      <!-- 내역 없음 상태 — 대체 상태(기본 숨김) -->
+      <div class="empty" style="border-top:1px solid var(--line-soft)" hidden>이용 내역이 없습니다.</div>
+    </section>
+
+    <!-- 더보기 — 목록 카드 밖 아래 중앙 -->
+    <div class="cr-more">
+      <button type="button">더보기</button>
+    </div>
+
+  </div>
+</div>
+</main>
+<!-- ─── 푸터 — LandingFooter (signupBonusCredit 미전달: 상단 CTA 없음) ─── -->
+<footer class="sw-footer">
+  <canvas class="mesh mesh-canvas" aria-hidden="true"></canvas>
+  <div class="sw-footer-inner">
+    <div class="footer-brand">
+      <div>
+        <p class="slogan">Reality Realization</p>
+        <p class="slogan-sub">Platform. This is Sanginworld.</p>
+      </div>
+      <ul class="footer-biz">
+        <li>상호: 요즘</li>
+        <li>대표: 김태경</li>
+        <li class="span2">주소: 부산광역시 강서구 명지오션시티1로 173,<br class="br-m">310호(명지동, 청산오션타워)</li>
+        <li>이메일: info@tkcnco.com</li>
+        <li>고객지원: 051-208-3346</li>
+        <li>사업자등록번호: 309-09-54575</li>
+        <li>통신판매업신고번호: 2026-부산강서구-0354호</li>
+        <li>호스팅서비스 제공자: (주)유시스</li>
+        <li><button type="button">사업자정보확인</button></li>
+      </ul>
+    </div>
+
+    <div class="divider-dashed"></div>
+
+    <div class="footer-bottom">
+      <span>© 2026 SanginWorld</span>
+      <span class="footer-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="terms.html">이용약관</a>
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="../vendor/lucide.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/mesh.js"></script>
+</body>
+</html>

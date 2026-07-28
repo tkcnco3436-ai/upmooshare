@@ -1,0 +1,782 @@
+/* ==========================================================================
+   credit.css — 크레딧/구독 (credit) 라우트 그룹 전용
+   근거: features/public/credit/components/{credit-view,charge-view,payment-step,
+         subscription-view,subscription-info-section}.tsx
+   ========================================================================== */
+
+/* ── 이용내역 항목 (TxnItem) ── */
+.txn {
+  border: 1px solid var(--input);
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.txn .t {
+  font-size: 14px;
+  line-height: 19.6px;
+  font-weight: 600;
+  color: #000;
+}
+.txn .amt {
+  font-size: 12px;
+  line-height: 16.8px;
+  font-weight: 600;
+}
+.txn .amt.plus {
+  color: var(--green-700);
+}
+.txn .amt.minus {
+  color: var(--primary);
+}
+.txn .meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 16.8px;
+  color: var(--gray-700);
+}
+.txn .meta .bal {
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+.txn-empty {
+  border: 1px solid var(--input);
+  border-radius: 12px;
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+/* ── 구독 정보 카드 (SubscriptionInfoSection) ── */
+.sub-card {
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  background: #fff;
+  padding: 14px 20px 20px;
+  box-shadow: var(--shadow-sm);
+}
+@media (max-width: 767px) {
+  .sub-card {
+    margin-left: -24px;
+    margin-right: -24px;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+}
+.sub-card > h2 {
+  padding-bottom: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-300);
+}
+.sub-box {
+  margin-top: 10px;
+  overflow: hidden;
+  border: 1px solid var(--input);
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px 20px;
+}
+.sub-box .eyebrow {
+  font-size: 12px;
+  line-height: 16.8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+.sub-box .eyebrow.green {
+  color: var(--green-700);
+}
+.sub-box .plan-nm {
+  font-size: 18px;
+  line-height: 25.2px;
+  font-weight: 700;
+  color: #000;
+}
+.sub-box .plan-meta {
+  font-size: 14px;
+  line-height: 19.6px;
+  color: var(--muted-foreground);
+}
+.sub-box .renew {
+  margin-top: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 9999px;
+  background: var(--gray-50);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--muted-foreground);
+}
+.sub-box .renew img {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+.sub-grant {
+  display: flex;
+  height: 106px;
+  width: 80px;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-radius: 12px;
+  background: var(--gray-50);
+}
+.sub-grant .k {
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+}
+.sub-grant .v {
+  font-size: 26px;
+  line-height: 36.4px;
+  font-weight: 700;
+  color: #000;
+}
+.sub-grant .u {
+  font-size: 10px;
+  line-height: 14px;
+  color: var(--muted-foreground);
+}
+.sub-none {
+  margin-top: 10px;
+  border: 1px solid var(--input);
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px 20px;
+}
+.sub-none p:first-child {
+  font-size: 12px;
+  line-height: 16.8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--green-700);
+}
+.sub-none p:last-child {
+  margin-top: 3px;
+  font-size: 14px;
+  line-height: 19.6px;
+  color: var(--muted-foreground);
+}
+
+/* ── 충전 플랜 선택 버튼 (PlanView) ── */
+.chg-plan {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--input);
+  border-radius: 12px;
+  background: #fff;
+  padding: 20px;
+  transition: border-color var(--dur-fast);
+}
+.chg-plan:hover {
+  border-color: rgba(0, 0, 0, 0.4);
+}
+.chg-plan .credit {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+}
+.chg-plan .price {
+  font-size: 22px;
+  line-height: 30.8px;
+  font-weight: 700;
+  color: #000;
+}
+.chg-plan.selected {
+  border-color: #000;
+  background: var(--gray-50);
+}
+.chg-plan.selected .credit {
+  color: #000;
+}
+
+/* 잔여 크레딧 큰 숫자 */
+.balance-big {
+  margin-top: 4px;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 4px;
+  padding-right: 12px;
+}
+.balance-big .n {
+  font-size: 26px;
+  line-height: 36.4px;
+  font-weight: 700;
+  color: #000;
+}
+.balance-big .u {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* ── 주문 요약 카드 ── */
+.order-card {
+  border: 1px solid var(--input);
+  border-radius: 12px;
+  background: var(--gray-50);
+  padding: 20px;
+}
+.order-card .row-between .k {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+.order-card .row-between .v {
+  font-size: 22px;
+  line-height: 30.8px;
+  font-weight: 700;
+  color: #000;
+}
+.order-card .sub-row {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--muted);
+  padding-top: 12px;
+}
+.order-card .sub-row .k {
+  font-size: 14px;
+  line-height: 19.6px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+.order-card .sub-row .v {
+  font-size: 16px;
+  line-height: 22.4px;
+  font-weight: 700;
+  color: #000;
+}
+
+/* ── 결제수단 (PaymentStep) ── */
+.pay-method {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+}
+.pay-method .radio {
+  display: flex;
+  height: 24px;
+  width: 24px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--input);
+  border-radius: 9999px;
+  background: #fff;
+}
+.pay-method.on .radio::after {
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 9999px;
+  background: var(--primary);
+}
+.pay-method .nm {
+  font-size: 16px;
+  line-height: 22.4px;
+  font-weight: 500;
+  color: #000;
+}
+
+/* 카드 캐러셀 */
+.card-rail {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 16px calc(50% - 140px);
+  scroll-padding-inline: calc(50% - 140px);
+  cursor: grab;
+  scrollbar-width: none;
+}
+.card-rail::-webkit-scrollbar {
+  display: none;
+}
+.pay-card {
+  display: flex;
+  width: 280px;
+  flex: none;
+  scroll-snap-align: center;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid var(--input);
+  border-radius: 12px;
+  background: #fff;
+  padding: 18px 22px;
+  text-align: left;
+  transition: border-color var(--dur-fast);
+}
+.pay-card:hover {
+  border-color: rgba(0, 0, 0, 0.4);
+}
+.pay-card.selected {
+  border-color: var(--primary);
+}
+.pay-card .corp {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+.pay-card .corp img {
+  width: 24px;
+  height: 24px;
+  flex: none;
+}
+.pay-card .num {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.pay-card .num .dot2 {
+  width: 2px;
+  height: 2px;
+  border-radius: 9999px;
+  background: var(--muted-foreground);
+}
+.pay-card-add {
+  display: flex;
+  width: 280px;
+  flex: none;
+  scroll-snap-align: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--input);
+  border-radius: 12px;
+  background: #fff;
+  padding: 18px 22px;
+}
+.pay-card-add:hover {
+  border-color: rgba(0, 0, 0, 0.4);
+}
+.pay-card-add span {
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
+}
+
+/* 할부 선택 */
+.installment {
+  position: relative;
+  padding: 0 20px;
+}
+.installment select {
+  width: 100%;
+  appearance: none;
+  border: 1px solid var(--input);
+  border-radius: 6px;
+  background: #fff;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+.installment svg {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  right: 28px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--muted-foreground);
+}
+
+/* 필수 동의 줄 */
+.consent-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+.consent-row .l {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+}
+.consent-row .l > svg {
+  width: 24px;
+  height: 24px;
+  color: var(--primary);
+}
+.consent-row .r {
+  width: 20px;
+  height: 20px;
+  color: var(--muted);
+}
+.consent-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+.consent-hint svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+/* ── 구독 플랜 카드 (subscription PlanView) ── */
+.sub-plan {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  border: 1px solid var(--input);
+  border-radius: 12px;
+  background: #fff;
+  padding: 18px 0 26px;
+  text-align: left;
+  transition: border-color var(--dur-fast);
+}
+.sub-plan:hover {
+  border-color: rgba(0, 0, 0, 0.4);
+}
+.sub-plan.selected {
+  border-color: transparent;
+  outline: 2px solid var(--primary);
+}
+.sub-plan.current {
+  border-color: var(--input);
+  background: var(--muted);
+  cursor: default;
+}
+.sub-plan .head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 20px;
+}
+.sub-plan .head .nm {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  color: var(--primary);
+}
+.sub-plan .head .pr {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  color: #000;
+}
+.sub-plan .sep {
+  margin: 6px 20px;
+  height: 1px;
+  background: var(--muted);
+}
+.sub-plan .benefit-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 20px;
+  font-size: 14px;
+  line-height: 19.6px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+.sub-plan .benefit-head del {
+  text-decoration: line-through;
+}
+.plan-benefit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 20px;
+  font-size: 12px;
+  line-height: 16.8px;
+  color: var(--gray-700);
+}
+.plan-benefit img {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+/* 현재 구독 요약 (연한 레드 박스) */
+.cur-sub {
+  border-radius: 12px;
+  background: var(--red-50);
+  padding: 18px 20px 20px;
+}
+.cur-sub .head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 16px;
+  line-height: 22.4px;
+  font-weight: 600;
+}
+.cur-sub .head .nm {
+  color: var(--primary);
+}
+.cur-sub .head .pr {
+  color: #000;
+}
+.cur-sub .sep {
+  margin: 8px 0;
+  height: 1px;
+  background: var(--muted);
+}
+.cur-sub .note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 16.8px;
+  color: var(--muted-foreground);
+}
+.cur-sub .note img {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.sub-empty-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--input);
+  border-radius: 12px;
+  background: #fff;
+  padding: 20px 12px;
+  text-align: center;
+}
+.sub-empty-box p:first-child {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary);
+}
+.sub-empty-box p:last-child {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+/* 결제 처리 오버레이 (ProcessingOverlay) */
+.pay-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #fff 0%, #ffe5d4 100%);
+}
+.pay-overlay .inner {
+  display: flex;
+  width: 100%;
+  max-width: 450px;
+  flex-direction: column;
+  padding: 0 20px;
+}
+.pay-overlay h2 {
+  margin-top: 12px;
+  font-size: 32px;
+  line-height: 44.8px;
+  font-weight: 700;
+  color: var(--primary);
+}
+.pay-overlay p {
+  margin-top: 6px;
+  font-size: 16px;
+  line-height: 22.4px;
+  color: var(--gray-700);
+}
+
+/* ==========================================================================
+   크레딧 및 구독관리 — 넓은 레이아웃 (마이페이지 톤 적용)
+   ※ 실서비스는 450px 단일 컬럼이다. 마이페이지와 톤을 맞추기 위한 의도적 개선.
+      카드 껍데기(.mp-card)·pill 버튼·크레딧 행은 account.css 를 그대로 재사용한다.
+   ========================================================================== */
+
+.cr-page {
+  min-height: 60vh;
+  background: var(--surface-alt);
+  padding: 0 0 96px;
+}
+.cr-inner {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 24px;
+}
+
+/* 페이지 헤더 — 제목·부제 (우측 주액션 없음) */
+.cr-head {
+  margin: 32px 0 24px;
+}
+.cr-head h1 {
+  font-size: 24px;
+  line-height: 33.6px;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+.cr-head p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--gray-300);
+}
+
+/* 2컬럼 (크레딧 / 구독) — 마이페이지 .mp-2col 과 동일 규칙 */
+.cr-2col {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+@media (min-width: 1024px) {
+  .cr-2col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+/* ── 이용내역 ── */
+.cr-txn-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px 12px;
+}
+.cr-txn-head h2 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-300);
+}
+/* 필터 칩 (전체 / 적립 / 사용) */
+.cr-filter {
+  display: flex;
+  gap: 6px;
+}
+.cr-filter button {
+  border-radius: 9999px;
+  background: var(--gray-50);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-sub);
+}
+.cr-filter button[aria-selected="true"] {
+  background: var(--gray-700);
+  color: #fff;
+}
+
+/* 거래 행 — 넓은 폭에서 [내역·일시] [변동] [잔액] */
+.txn-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  column-gap: 20px;
+  border-top: 1px solid var(--line-soft);
+  padding: 14px 20px;
+}
+.txn-row:hover {
+  background: var(--surface-alt);
+}
+.txn-row .t {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+.txn-row .dt {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--gray-300);
+  font-variant-numeric: tabular-nums;
+}
+.txn-row .amt {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.txn-row .amt.plus {
+  color: var(--green-700);
+}
+.txn-row .amt.minus {
+  color: var(--primary);
+}
+.txn-row .bal {
+  min-width: 96px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 640px) {
+  .txn-row {
+    grid-template-columns: 1fr auto;
+    row-gap: 4px;
+  }
+  .txn-row .bal {
+    grid-column: 2;
+    min-width: 0;
+  }
+}
+
+/* 더보기 — 목록 카드 **밖** 아래 중앙 (내영상 .mv-more 와 동일 규칙) */
+.cr-more {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 0;
+}
+.cr-more button {
+  border-radius: 9999px;
+  border: 1px solid var(--line-soft);
+  background: #fff;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-body);
+  box-shadow: var(--shadow-sm);
+  transition:
+    background var(--dur-fast),
+    border-color var(--dur-fast);
+}
+.cr-more button:hover {
+  border-color: var(--line);
+  background: var(--gray-50);
+}

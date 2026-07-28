@@ -1,0 +1,344 @@
+/* ==========================================================================
+   account.css — 계정 영역(크레딧·구독·마이페이지·알림함) 공통 조각
+   근거: features/public/mypage/components/mypage-card-style.ts,
+         features/public/credit/components/*, features/public/mypage/components/*
+   ========================================================================== */
+
+/* 450px 단일 컬럼 (mx-auto max-w-[450px] px-4 py-10 sm:px-0 sm:py-14) */
+.col-450 {
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  max-width: 450px;
+  flex-direction: column;
+  padding: 40px 16px;
+}
+@media (min-width: 640px) {
+  .col-450 {
+    padding: 56px 0;
+  }
+}
+.col-450.gap3 {
+  gap: 12px;
+}
+.col-450.top20 {
+  padding: 80px 0 0;
+}
+
+/* 32px 페이지 타이틀 (text-[32px] leading-[44.8px] font-bold) */
+.acc-h1 {
+  font-size: 32px;
+  line-height: 44.8px;
+  font-weight: 700;
+  color: #000;
+}
+.acc-h2 {
+  font-size: 22px;
+  line-height: 30.8px;
+  font-weight: 600;
+  color: #000;
+}
+.acc-label {
+  font-size: 16px;
+  line-height: 22.4px;
+  font-weight: 500;
+  color: #000;
+}
+.acc-desc {
+  font-size: 16px;
+  line-height: 22.4px;
+  color: var(--muted-foreground);
+}
+.hr-e6 {
+  height: 1px;
+  background: var(--muted);
+}
+.h5 {
+  height: 20px;
+}
+.h6 {
+  height: 24px;
+}
+.h9 {
+  height: 36px;
+}
+.h24 {
+  height: 96px;
+}
+
+/* 메시 그라디언트 커버 (MeshGradientCover) — 마이페이지 · 크레딧 공용
+   relative h-40 w-full overflow-hidden bg-white md:h-[280px] · 캔버스는 block h-full w-full */
+.mp-cover {
+  position: relative;
+  height: 160px;
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+@media (min-width: 768px) {
+  .mp-cover {
+    height: 280px;
+  }
+}
+.mp-cover > canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* 문구: absolute 중앙, text-[22px] md:text-[28px] font-bold text-black */
+.mp-cover .phrase {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #000;
+}
+@media (min-width: 768px) {
+  .mp-cover .phrase {
+    font-size: 28px;
+  }
+}
+/* 캐럿: ml-0.5 inline-block h-[1em] w-0.5 translate-y-[0.15em] animate-pulse bg-black align-middle */
+.mp-cover .phrase::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  transform: translateY(0.15em);
+  vertical-align: middle;
+  background: #000;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* MYPAGE_CARD — 흰 배경·연보더·라운드16·미세그림자, <768 풀블리드 */
+.mp-card {
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+@media (max-width: 767px) {
+  .mp-card {
+    margin-left: -24px;
+    margin-right: -24px;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+}
+.mp-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px 10px;
+}
+.mp-card-head h2 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-300);
+}
+.mp-card-head a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-900);
+}
+.mp-card-head a:hover {
+  opacity: 0.7;
+}
+
+/* 크레딧 정보 행 (CreditRow) */
+.credit-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 6px;
+  border-top: 1px solid var(--line-soft);
+  padding: 20px;
+}
+.credit-row:first-of-type {
+  border-top: 0;
+}
+.credit-row .ic {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-300);
+}
+.credit-row .ic svg {
+  width: 16px;
+  height: 16px;
+}
+.credit-row dt {
+  width: 56px;
+  flex: none;
+  font-size: 13px;
+  color: var(--gray-300);
+}
+@media (min-width: 768px) {
+  .credit-row dt {
+    width: 64px;
+  }
+}
+.credit-row dd {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-900);
+}
+.credit-row .big {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.credit-row .big strong {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brand);
+}
+.credit-row .big span {
+  font-size: 13px;
+  color: var(--brand);
+}
+.credit-row .row-desc {
+  display: none;
+  flex-basis: 100%;
+  padding-left: 32px;
+  font-size: 12px;
+  color: var(--gray-300);
+}
+@media (min-width: 768px) {
+  .credit-row .row-desc {
+    display: block;
+  }
+  .credit-row .info-btn {
+    display: none;
+  }
+}
+.info-btn {
+  color: var(--gray-300);
+  display: grid;
+  place-items: center;
+}
+.info-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* pill 버튼 (구독하기 / 변경하기 / 해지하기) */
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #000;
+  padding: 8px 16px;
+  font-size: 12px;
+  line-height: 16.8px;
+  font-weight: 600;
+  color: #fff;
+}
+.pill-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+.pill-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--input);
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-size: 12px;
+  line-height: 16.8px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+}
+.pill-btn-outline:hover {
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 검정 블록 버튼 (py-3 rounded-[6px]) */
+.btn-block-dark {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #000;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+.btn-block-dark:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+.btn-block-dark:disabled {
+  background: var(--muted);
+  color: var(--muted-foreground);
+}
+.btn-underline {
+  display: block;
+  width: 100%;
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--muted-foreground);
+  text-decoration: underline;
+}
+
+/* 뒤로가기 화살표 */
+.back-arrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gray-700);
+}
+.back-arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* 회색 안내 박스 (bg-[#F5F5F5] rounded-[12px]) */
+.gray-note {
+  border-radius: 12px;
+  background: var(--gray-50);
+  padding: 12px 20px;
+}
+.gray-note .line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 19.6px;
+  color: var(--muted-foreground);
+}
+.gray-note img,
+.gray-note svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+/* 결과 화면(완료/실패) 상단 아이콘 */
+.result-icon {
+  width: 54px;
+  height: 54px;
+}
