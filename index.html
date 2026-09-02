@@ -343,15 +343,6 @@ require a Facebook Page to be linked to the Instagram professional account."* �
 
 같은 이유로 **다시 공개할 때 좋아요도 이어받는 것이 맞습니다** — 같은 콘텐츠로 봅니다.
 
-**개발 전달**
-
-| 항목 | 내용 |
-| --- | --- |
-| 값 | `published_at`(처음 공개한 시각)이 `created_at` 과 별도로 필요합니다 |
-| 목록 | `where is_public = true order by published_at desc` |
-| 좋아요순 | `order by like_count desc, published_at desc` — 동수는 공개일로 가릅니다 |
-| 다시 공개 | `is_public` 만 바꾸고 **`published_at` 은 갱신하지 않습니다** |
-
 **내 카드뉴스·내 영상에서 콘텐츠광장에 공개할 수 있습니다.** 공개는 스위치로 켜고 끄며, **켤 때와 끌 때 각각 한 번 물어봅니다.** 가게 이름은 표시되지 않고, 만든 카드는 순서 그대로 모두 올라갑니다.
 
 > ⚠️ **이름은 아직 정해지지 않았습니다. 「콘텐츠광장」은 임시로 쓰는 이름입니다.**
